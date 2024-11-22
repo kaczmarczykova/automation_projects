@@ -10,18 +10,23 @@ public class Cart {
     }
 
     void open() {
-        browser.get("https://www.mall.cz/kosik");
+        browser.get("hhttps://www.alza.cz/Order1.htm");
     }
 
     void goBack() {
-        browser.findElement(By.cssSelector(".go_back_btn")).click();
+        browser.findElement(By.cssSelector(".arrow left")).click();
     }
 
     void goCheckOut() {
-        browser.findElement(By.cssSelector(".cart-overview__wrapper .cart-layout__submit .btn--primary")).click();
+        browser.findElement(By.cssSelector(".arrow right")).click();
     }
 
     void deleteItem(int index) {
         browser.findElements(By.cssSelector(".cart-overview-item-row__delete .cart__remove-icon")).get(index).click();
+    }
+
+    void checkTheText() {
+        var vyberDoruceni = browser.findElement(By.cssSelector(".chooseDeliveryPaymentLabel"));
+        vyberDoruceni.getText();
     }
 }
