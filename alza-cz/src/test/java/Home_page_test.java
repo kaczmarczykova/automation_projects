@@ -41,7 +41,6 @@ public class Home_page_test {
         //find the cheapest one and add to cart
         shopping.orderByPrice();
         shopping.getExpectedPrice();
-        shopping.doublePrice();
         waitFor(5);
         shopping.addToCart();
 
@@ -53,9 +52,7 @@ public class Home_page_test {
 
         //assert there are 2 TVs in the cart and that the expected price and actual price are equal
         Assertions.assertEquals(cart.checkCount(), 2);
-        Assertions.assertEquals(shopping.doublePrice(), cart.getActualPrice());
-
+        Assertions.assertEquals(shopping.getExpectedPrice() * 2, cart.getActualPrice());
     }
-
 
 }

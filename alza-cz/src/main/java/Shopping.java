@@ -38,10 +38,4 @@ public class Shopping {
         return number;
     }
 
-    int doublePrice() {
-        int expectedDoublePrice = getExpectedPrice() * 2; // Výpočet dvojnásobku
-        return expectedDoublePrice;
-    }
-
-
 }
