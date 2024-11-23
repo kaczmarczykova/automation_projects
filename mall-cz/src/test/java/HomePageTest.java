@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class HomePageTest {
-    WebDriver browser = WebDriverManager.firefoxdriver().create();
+    WebDriver browser = WebDriverManager.chromedriver().create();
 
     void waitFor(int seconds) {
         try {
