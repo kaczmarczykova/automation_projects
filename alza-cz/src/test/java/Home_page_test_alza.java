@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class Home_page_test {
+public class Home_page_test_alza {
 
     WebDriver browser = WebDriverManager.chromedriver().create();
 
@@ -29,29 +29,29 @@ public class Home_page_test {
     @Test
     void homePageTest() {
 
-        Shopping shopping = new Shopping(browser);
-        Cart cart = new Cart(browser);
+        ShoppingAlza shoppingAlza = new ShoppingAlza(browser);
+        CartAlza cartAlza = new CartAlza(browser);
 
         //click on TVs
-        shopping.open();
-        shopping.selectTVsPhotoAudio();
+        shoppingAlza.open();
+        shoppingAlza.selectTVsPhotoAudio();
         waitFor(5);
-        shopping.selectTVs();
+        shoppingAlza.selectTVs();
 
         //find the cheapest one and add to cart
-        shopping.orderByPrice();
-        int expected = shopping.getExpectedPrice();
+        shoppingAlza.orderByPrice();
+        int expected = shoppingAlza.getExpectedPrice();
         waitFor(5);
-        shopping.addToCart();
+        shoppingAlza.addToCart();
 
         //open cart and increase the number of TVs
-        cart.open();
+        cartAlza.openCart();
         waitFor(5);
-        cart.increaseNumber();
-        int actual = cart.getActualPrice();
+        cartAlza.increaseNumber();
+        int actual = cartAlza.getActualPrice();
 
         //assert there are 2 TVs in the cart and that the expected price and actual price are equal
-        Assertions.assertEquals(cart.checkCount(), 2);
+        Assertions.assertEquals(cartAlza.getTheCount(), 2);
         Assertions.assertEquals(expected * 2, actual);
     }
 

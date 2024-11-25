@@ -38,19 +38,21 @@ public class HomePageTest {
 
     @Test
     void hairDryerTest() {
+        ProductSelection productSelectionPage = new ProductSelection(browser);
+        Product productPage = new Product(browser);
 
         browser.findElement(By.cssSelector(".desktop-menu__item-title")).click();
 
         //click on hair dryers
         browser.findElement(By.xpath("//a[@href='/feny']")).click();
         waitFor(5);
-        browser.findElement(By.cssSelector(".bs__name")).click();
+        productSelectionPage.selectPopularProduct((0));
 
         waitFor(5);
         var expectedName = browser.findElement(By.cssSelector(".detail__title--desktop")).getText();
 
         //Add to cart
-        browser.findElement(By.cssSelector(".info-box__main-btn .add-to-cart-list")).click();
+        productPage.addToCart();
 
         //Open cart
         waitFor(5);
