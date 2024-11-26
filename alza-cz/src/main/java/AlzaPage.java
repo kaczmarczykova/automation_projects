@@ -6,6 +6,7 @@ public class AlzaPage {
 
     public AlzaPage(WebDriver browser) {
         this.browser = browser;
+        browser.manage().window().fullscreen();
     }
 
     void mainLogo() {

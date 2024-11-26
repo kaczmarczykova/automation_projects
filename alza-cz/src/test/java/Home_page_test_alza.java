@@ -45,9 +45,11 @@ public class Home_page_test_alza {
         shoppingAlza.addToCart();
 
         //open cart and increase the number of TVs
+        waitFor(5);
         cartAlza.openCart();
         waitFor(5);
         cartAlza.increaseNumber();
+        waitFor(5);
         int actual = cartAlza.getActualPrice();
 
         //assert there are 2 TVs in the cart and that the expected price and actual price are equal
