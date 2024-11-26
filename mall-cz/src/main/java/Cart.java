@@ -1,12 +1,10 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class Cart {
+public class Cart extends MallPage {
 
-    WebDriver browser;
-
-    public Cart(WebDriver browser) {
-        this.browser = browser;
+    Cart(WebDriver browser) {
+        super(browser);
     }
 
     void open() {

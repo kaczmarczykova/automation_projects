@@ -1,20 +1,14 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class CartAlza {
+public class CartAlza extends AlzaPage {
+        WebDriver browser;
 
-    WebDriver browser;
-
-    public CartAlza(WebDriver browser) {
-        this.browser = browser;
+    CartAlza(WebDriver browser) {
+        super(browser);
     }
 
-    void openCart() {
-        //browser.findElement(By.cssSelector(".header-alz-359")).click();
-        browser.findElement(By.cssSelector(".header-alz-104")).click();
-    }
-
-    void goBack() {
+     void goBack() {
         var buttonBack = browser.findElement(By.cssSelector(".arrow left"));
         buttonBack.click();
     }
@@ -49,8 +43,7 @@ public class CartAlza {
 
     int getActualPrice() {
         var actualPrice = browser.findElement(By.cssSelector(".last price")).getText();
-        actualPrice = actualPrice.replaceAll("[^\\d]", "");
-        actualPrice = actualPrice.replaceAll("\u00A0", ""); // Např. "12 345 Kč" → "12345"
+        actualPrice = actualPrice.replaceAll("[^\\d]", "");// Např. "12 345 Kč" → "12345"
         int number = Integer.parseInt(actualPrice); // Převod na integer
         return number;
     }

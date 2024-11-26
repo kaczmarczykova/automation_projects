@@ -1,11 +1,11 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class ShoppingAlza {
+public class ShoppingAlza extends AlzaPage {
     WebDriver browser;
 
-    public ShoppingAlza(WebDriver browser) {
-        this.browser = browser;
+    ShoppingAlza(WebDriver browser) {
+        super(browser);
     }
 
     void open() {
@@ -33,7 +33,7 @@ public class ShoppingAlza {
 
     int getExpectedPrice() {
         var expectedPrice = browser.findElement(By.cssSelector(".price-box__price")).getText();
-        expectedPrice = expectedPrice.replaceAll("[^\\d]", "").replaceAll("\u00A0", ""); // Např. "12 345 Kč" → "12345"
+        expectedPrice = expectedPrice.replaceAll("[^\\d]", ""); // Např. "12 345 Kč" → "12345"
         int number = Integer.parseInt(expectedPrice); // Převod na integer
         return number;
     }

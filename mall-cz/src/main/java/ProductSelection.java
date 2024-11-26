@@ -1,11 +1,10 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class ProductSelection {
-    WebDriver browser;
+public class ProductSelection extends MallPage {
 
-    public ProductSelection(WebDriver browser) {
-        this.browser = browser;
+    ProductSelection(WebDriver browser) {
+        super(browser);
     }
 
   void showMore() {

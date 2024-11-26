@@ -8,6 +8,9 @@ import org.openqa.selenium.WebElement;
 
 public class HomePageTest {
     WebDriver browser = WebDriverManager.chromedriver().create();
+    ProductSelection productSelectionPage;
+    Product productPage;
+    Cart cartPage;
 
     void waitFor(int seconds) {
         try {
@@ -23,23 +26,20 @@ public class HomePageTest {
         //accept cookies
         WebElement cookiesAcceptButton = browser.findElement(By.cssSelector(".legal-consent__button-container"));
         cookiesAcceptButton.click();
+
+        productSelectionPage = new ProductSelection(browser);
+        productPage = new Product(browser);
+        cartPage = new Cart(browser);
     }
 
     @Test
     void homePageTest() {
-
-
-
-        //click a button based on its index (0, 1 or 2)
-       // browser.findElements(By.cssSelector(".legal-consent__button-container")).get(0).click();
 
         Assertions.assertEquals("MALL.CZ – bílé zboží, elektronika, PC, outdoor, hobby, hračky, kosmetika, chovatelské potřeby", browser.getTitle());
     }
 
     @Test
     void hairDryerTest() {
-        ProductSelection productSelectionPage = new ProductSelection(browser);
-        Product productPage = new Product(browser);
 
         browser.findElement(By.cssSelector(".desktop-menu__item-title")).click();
 
@@ -75,4 +75,8 @@ public class HomePageTest {
         cartPage.deleteItem(0);
     }
 
+    @Test
+    void loginTest() {
+        productPage.getLogged("blbec", "blbec");
+    }
 }
