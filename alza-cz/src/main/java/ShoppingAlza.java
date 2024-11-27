@@ -2,7 +2,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class ShoppingAlza extends AlzaPage {
-    WebDriver browser;
 
     ShoppingAlza(WebDriver browser) {
         super(browser);
@@ -28,11 +27,15 @@ public class ShoppingAlza extends AlzaPage {
     }
 
     void addToCart () {
-                browser.findElements(By.cssSelector(".btnk1")).get(0).click();
+                browser.findElement(By.cssSelector(".price-detail__buy-actions")).click();
+    }
+
+    void openProductPage() {
+        browser.findElements(By.cssSelector(".pc.browsinglink.js-box-link")).get(0).click();
     }
 
     int getExpectedPrice() {
-        var expectedPrice = browser.findElement(By.cssSelector(".price-box__price")).getText();
+        var expectedPrice = browser.findElements(By.cssSelector(".price-box__price")).get(0).getText();
         expectedPrice = expectedPrice.replaceAll("[^\\d]", ""); // Např. "12 345 Kč" → "12345"
         int number = Integer.parseInt(expectedPrice); // Převod na integer
         return number;

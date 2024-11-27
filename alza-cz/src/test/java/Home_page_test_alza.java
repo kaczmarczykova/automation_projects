@@ -24,6 +24,7 @@ public class Home_page_test_alza {
         //accept cookies
         WebElement cookiesAcceptButton = browser.findElement(By.cssSelector(".cookies-info__button--white"));
         cookiesAcceptButton.click();
+        browser.manage().window().fullscreen();
     }
 
     @Test
@@ -40,14 +41,18 @@ public class Home_page_test_alza {
 
         //find the cheapest one and add to cart
         shoppingAlza.orderByPrice();
+        waitFor(5);
+        shoppingAlza.openProductPage();
         int expected = shoppingAlza.getExpectedPrice();
         waitFor(5);
         shoppingAlza.addToCart();
 
         //open cart and increase the number of TVs
+        waitFor(5);
         cartAlza.openCart();
         waitFor(5);
         cartAlza.increaseNumber();
+        waitFor(5);
         int actual = cartAlza.getActualPrice();
 
         //assert there are 2 TVs in the cart and that the expected price and actual price are equal

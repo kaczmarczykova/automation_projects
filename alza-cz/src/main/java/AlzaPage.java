@@ -6,11 +6,12 @@ public class AlzaPage {
 
     public AlzaPage(WebDriver browser) {
         this.browser = browser;
+        browser.manage().window().maximize();
     }
 
     void mainLogo() {
         browser.findElement(By.xpath("//a[@data-testid=\"headerLogo\"]")).click();
-        }
+    }
 
     void searchProduct(String keyword) {
         browser.findElement(By.xpath("//a[@data-testid=\"searchInput\"]")).sendKeys(keyword);
@@ -30,6 +31,5 @@ public class AlzaPage {
     void openFavourites() {
         browser.findElement(By.xpath("//a[@data/testid=\"headerCommodityListIcon\"]")).click();
     }
-
 
 }
