@@ -20,9 +20,10 @@ def fizzbuzz():
 def two_sum(array, target):
     array_to_list = list(array)
     for i in range (0, len(array_to_list)):
-        if array_to_list[i] + array_to_list[i + 1] == target:
-            return target
-
+        for j in range (0, len(array_to_list)):
+            if i != j:
+                if array_to_list[i] + array_to_list[j] == target:
+                    return array_to_list[i], array_to_list[j]
 
 #############################################################################################
 #Palindrome Check
