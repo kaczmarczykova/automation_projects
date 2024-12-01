@@ -32,4 +32,50 @@ public class AlzaPage {
         browser.findElement(By.xpath("//a[@data/testid=\"headerCommodityListIcon\"]")).click();
     }
 
+    String changeLanguage() {
+        browser.findElements(By.cssSelector(".header-alz-20")).get(0).click();
+
+        //get language locators
+        var firstOption = browser.findElements(By.cssSelector(".PrivateSwitchBase-root")).get(0);
+        var secondOption = browser.findElements(By.cssSelector("PrivateSwitchBase-root")).get(1);
+
+        //check which option is selected
+        try {
+            if (firstOption.isSelected()) {
+                secondOption.click();
+                var lng = "EN";
+                var close = "Potvrdit / Confirm";
+                browser.findElement(By.linkText(close)).click();
+                return lng;
+            } else {
+                firstOption.click();
+                var lng = "CZ";
+                var close = "Confirm";
+                browser.findElement(By.linkText(close)).click();
+                return lng;
+            }
+        }
+
+    }
+
+    String getLanguageVersion() {
+
+        /*var lngVersion = browser.findElement(By.xpath("//span[@data-testid=\"footerLanguageSwitcher\"]")).getAttribute("alt");
+        if (lngVersion == "CZ") {
+            var language = "CZ";
+            return language;
+        } else {
+            var language = "EN";
+            return language;*/
+
+        var lngVersion = browser.findElements(By.cssSelector(".footer-alz-14")).get(0).getText();
+        if (lngVersion.contains("Nejspolehlivější internetový obchod v ČR")) {
+            var language = "CZ";
+            return language;
+        } else {
+            var language = "EN";
+            return language;
+        }
+    }
+
 }

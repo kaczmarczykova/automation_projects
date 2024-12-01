@@ -8,7 +8,7 @@ public class CartAlza extends AlzaPage {
     }
 
     void goBack() {
-        var buttonBack = browser.findElement(By.cssSelector(".arrow left"));
+        var buttonBack = browser.findElement(By.cssSelector(".btnx.left"));
         buttonBack.click();
     }
 

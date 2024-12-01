@@ -24,7 +24,7 @@ public class Home_page_test_alza {
         //accept cookies
         WebElement cookiesAcceptButton = browser.findElement(By.cssSelector(".cookies-info__button--white"));
         cookiesAcceptButton.click();
-        browser.manage().window().fullscreen();
+        browser.manage().window().maximize();
     }
 
     @Test
@@ -32,6 +32,7 @@ public class Home_page_test_alza {
 
         ShoppingAlza shoppingAlza = new ShoppingAlza(browser);
         CartAlza cartAlza = new CartAlza(browser);
+        AlzaPage alzaPage = new AlzaPage(browser);
 
         //click on TVs
         shoppingAlza.open();
@@ -60,5 +61,21 @@ public class Home_page_test_alza {
         Assertions.assertEquals(expected * 2, actual);
     }
 
+    @Test
+    void LanguageTest() {
+
+        ShoppingAlza shoppingAlza = new ShoppingAlza(browser);
+        CartAlza cartAlza = new CartAlza(browser);
+        AlzaPage alzaPage = new AlzaPage(browser);
+
+        //browser.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
+        //var option1 = alzaPage.getLanguageVersion();
+        alzaPage.changeLanguage();
+        var option2 = alzaPage.getLanguageVersion();
+
+        //Assertions.assertNotEquals(option1, option2);
+
+
+    }
 
 }
