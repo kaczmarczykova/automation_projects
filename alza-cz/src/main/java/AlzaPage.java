@@ -55,6 +55,10 @@ public class AlzaPage {
                 return lng;
             }
         }
+        catch(Exception ex)
+        {
+            return null;
+        }
 
     }
 
@@ -77,5 +81,6 @@ public class AlzaPage {
             return language;
         }
     }
+
 
 }
