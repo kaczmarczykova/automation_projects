@@ -20,6 +20,7 @@ def test_1_login_functionality(page):
 
     # 3. Login with Missing Credentials
     meta.login(page, definitions.TESTING_CREDS_INCOMPLETE)
+    meta.getValidationMessage()
     assert page.get_by_text("Vyplňte prosím toto pole.", exact = True).is_visible()
     meta.logout()
 
@@ -37,6 +38,17 @@ def test_2_form_submission(page):
     meta.fill_form_and_submit(page, definitions.FORM_DATA_INCOMPLETE)
     pw.expect(page).to_have_text(re.compile("Vyplňte prosím toto pole.", re.IGNORECASE))
 
+def test_2_1_form_submission(page):
     # 2. Submit Form with Valid Data
-    page.reload()
+    meta.login(page, definitions.ENTITY_CREDS)
+    page.evaluate("document.body.style.zoom = '0.33'")
+    meta.open_form(page)
+    #page.reload()
     meta.fill_form_and_submit(page, definitions.FORM_DATA)
+    saved_data = page.get_by_text("saved-item")
+    # check Name is saved correctly
+    pw.expect(saved_data).to_contain_text(definitions.FORM_DATA[0])
+    # check Email is saved correctly
+    pw.expect(saved_data).to_contain_text(definitions.FORM_DATA[1])
+    # check Message is saved correctly
+    pw.expect(saved_data).to_contain_text(definitions.FORM_DATA[2])

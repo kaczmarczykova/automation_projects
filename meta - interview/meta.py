@@ -18,7 +18,7 @@ def open_form(page):
     page.get_by_text("Go to Form Page", exact = True).click()
     
 def fill_form_and_submit(page, name, email, message):
-    page.locator("input[id='name']").fill(name)
-    page.locator("input[id='email']").fill(email)
-    page.locator("input[id='message']").fill(message)
+    page.locator('[id="name"]').fill(name)
+    page.locator('[id="email"]').fill(email)
+    page.locator('[id="message"]').fill(message)
     page.get_by_text("Save Information", exact = True)
