@@ -10,4 +10,7 @@ public class Product extends MallPage {
     void addToCart() {
         browser.findElement(By.cssSelector(".info-box__main-btn .add-to-cart-list")).click();
     }
+
+
+
 }

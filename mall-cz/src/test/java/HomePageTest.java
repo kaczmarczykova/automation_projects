@@ -6,8 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class HomePageTest {
-    WebDriver browser = WebDriverManager.chromedriver().create();
+public class HomePageTest extends BaseTest {
     ProductSelection productSelectionPage;
     Product productPage;
     Cart cartPage;
@@ -22,11 +21,6 @@ public class HomePageTest {
 
     @BeforeEach
     void beforeTest() {
-        browser.get("https://mall.cz");
-        //accept cookies
-        WebElement cookiesAcceptButton = browser.findElement(By.cssSelector(".legal-consent__button-container"));
-        cookiesAcceptButton.click();
-
         productSelectionPage = new ProductSelection(browser);
         productPage = new Product(browser);
         cartPage = new Cart(browser);
@@ -75,8 +69,6 @@ public class HomePageTest {
         cartPage.deleteItem(0);
     }
 
-    @Test
-    void loginTest() {
-        productPage.getLogged("blbec", "blbec");
-    }
+
+
 }
