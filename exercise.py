@@ -32,7 +32,6 @@ def two_sum(array, target):
 #Check if a given string reads the same forwards and backwards.
 
 def palindrome_check(word):
-
     for i in range (0, len(word)//2):
         if word[i] != word[len(word) - 1 - i]:
             return False
@@ -67,16 +66,13 @@ round_brackets = valid_parentheses("(", ")", string)
 square_brackets = valid_parentheses("[", "]", string)
 curly_brackets = valid_parentheses("{", "}", string)
 
-
-
 #############################################################################################
 #Find Maximum in Array
 #Write a function that finds the largest number in an array.
 
 def longest_length(array):
-    array_to_list = list(array)
-    the_largest = array_to_list[0]
-    for number in array_to_list:
+    the_largest = array[0]
+    for number in array:
         if number > the_largest:
             the_largest = number
     return the_largest
@@ -98,9 +94,8 @@ def count_vowels(word):
 #Find the sum of all positive numbers in an array.
 
 def positive_sum(array):
-    array_to_list = list(array)
     sum_positive = 0
-    for number in array_to_list:
+    for number in array:
         if number > 0:
             sum_positive += number
     return sum_positive
