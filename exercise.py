@@ -2,9 +2,9 @@ import sys
 #FizzBuzz
 #Print numbers 1-100, replace multiples of 3 with "Fizz", multiples of 5 with "Buzz", and multiples of both with "FizzBuzz".
 
-def fizzbuzz():
-    for number in (1, 101):
-        if number % 3 == 0 and number % 5 == 0:
+def fizzbuzz(first, last):
+    for number in (first, last + 1):
+        if number % 15 == 0:
             print("FizzBuzz")
         elif number % 3 == 0 and number % 5 != 0:
             print("Fizz")
@@ -13,6 +13,8 @@ def fizzbuzz():
         else:
             print(number)
 
+fizzbuzz(1,100)
+
 #############################################################################################
 #Two Sum
 #Find two numbers in an array that add up to a specific target.
@@ -20,22 +22,21 @@ def fizzbuzz():
 def two_sum(array, target):
     array_to_list = list(array)
     for i in range (0, len(array_to_list)):
-        for j in range (0, len(array_to_list)):
-            if i != j:
-                if array_to_list[i] + array_to_list[j] == target:
-                    return array_to_list[i], array_to_list[j]
+        for j in range (i + 1, len(array_to_list)):
+            if array_to_list[i] + array_to_list[j] == target:
+                return array_to_list[i], array_to_list[j]
+
 
 #############################################################################################
 #Palindrome Check
 #Check if a given string reads the same forwards and backwards.
 
 def palindrome_check(word):
-    from_left = word
-    from_right = ""
-    for i in range (len(word) - 1, 0, -1):
-        from_right += word[i]
-    if from_left == from_right:
-        return True
+
+    for i in range (0, len(word)//2):
+        if word[i] != word[len(word) - 1 - i]:
+            return False
+    return True
 
 #############################################################################################
 #Reverse a String
@@ -51,32 +52,22 @@ def reverse_string(word):
 #Valid Parentheses
 #Determine if a string with brackets like (), {}, [] is valid (each opening bracket has a corresponding closing one).
 
-def valid_parentheses(string):
-    count_round_brackets_left = 0
-    count_round_brackets_right = 0
-    count_square_brackets_left = 0
-    count_square_brackets_right = 0
-    count_complex_brackets_left = 0
-    count_complex_brackets_right = 0
-    for i in range (0, len(string)):
-        if string[i] == "(":
-            count_round_brackets_left += 1
-        if string[i] == ")":
-            count_round_brackets_right += 1
-        if string[i] == "[":
-            count_square_brackets_left += 1
-        if string[i] == "]":
-            count_square_brackets_right += 1
-        if string[i] == "{":
-            count_complex_brackets_left += 1
-        if string[i] == "}":
-            count_complex_brackets_right += 1
-    if count_round_brackets_left == count_round_brackets_right:
-        return True
-    if count_square_brackets_left == count_square_brackets_right:
-        return True
-    if count_complex_brackets_left == count_complex_brackets_right:
-        return True
+def valid_parentheses(opening, closing, string):
+    open_in_total = 0
+    for character in string:
+        if character == opening:
+            open_in_total = open_in_total + 1
+        if character == closing:
+            open_in_total = open_in_total - 1
+        if open_in_total < 0:
+            return False
+    return open_in_total == 0
+
+round_brackets = valid_parentheses("(", ")", string)
+square_brackets = valid_parentheses("[", "]", string)
+curly_brackets = valid_parentheses("{", "}", string)
+
+
 
 #############################################################################################
 #Find Maximum in Array
@@ -119,9 +110,8 @@ def positive_sum(array):
 #Find a missing number in an array of integers from 1 to n.
 
 def missing_number(array):
-    array_to_list = list(array)
     missing_numbers = []
-    for i in range (1, len(array_to_list)):
-        if array_to_list[i] - array_to_list[i-1] != 1:
-            missing_numbers.append(array_to_list[i]-1)
+    for i in range (1, len(array)):
+        if array[i] - array[i-1] != 1:
+            missing_numbers.append(array[i]-1)
     return missing_numbers
