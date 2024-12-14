@@ -7,8 +7,11 @@ public class Cart extends MallPage {
         super(browser);
     }
 
-    void open() {
-        browser.get("https://www.mall.cz/kosik");
+    int howManyItemsInCart() {
+        var element = browser.findElements(By.cssSelector(".article-counter__input")).get(0);
+        var elementText = element.getAttribute("value");
+        int counter = Integer.parseInt(elementText);
+        return counter;
     }
 
     void goBack() {

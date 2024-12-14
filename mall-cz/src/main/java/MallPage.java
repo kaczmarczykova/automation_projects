@@ -16,8 +16,8 @@ public class MallPage {
         }
 
     void goToCart() {
-        browser.findElement(By.cssSelector(".cart__link > div:nth/child(1)")).click();
-        }
+        browser.findElement(By.xpath("//a[@data-sel='nav-widget-cart-link']")).click();
+    }
 
     void getLogged(String email, String password) {
         //browser.findElement(By.cssSelector(".desktop-icons__item--user")).click();
@@ -31,5 +31,7 @@ public class MallPage {
         browser.findElement(By.xpath("//input[@id='password']")).sendKeys((password));
         browser.findElement(By.xpath("//button[@data-testid='rounded-button']")).click();
     }
+
+
 }
 
