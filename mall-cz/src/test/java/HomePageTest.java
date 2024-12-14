@@ -11,13 +11,7 @@ public class HomePageTest extends BaseTest {
     Product productPage;
     Cart cartPage;
 
-    void waitFor(int seconds) {
-        try {
-            Thread.sleep(seconds * 1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
+
 
     @BeforeEach
     void beforeTest() {
@@ -63,9 +57,9 @@ public class HomePageTest extends BaseTest {
     void cartOperations() {
         Cart cartPage = new Cart(browser);
 
-        cartPage.open();
+        cartPage.goToCart();
         cartPage.goBack();
-        cartPage.open();
+        cartPage.goToCart();
         cartPage.deleteItem(0);
     }
 
