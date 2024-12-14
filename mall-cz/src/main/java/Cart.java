@@ -1,3 +1,4 @@
+import dev.failsafe.internal.util.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -8,9 +9,9 @@ public class Cart extends MallPage {
     }
 
     int howManyItemsInCart() {
-        var element = browser.findElements(By.cssSelector(".article-counter__input")).get(0);
+        var element = browser.findElements(By.cssSelector(".article-counter__input")).getFirst();
         var elementText = element.getAttribute("value");
-        int counter = Integer.parseInt(elementText);
+        var counter = Integer.parseInt(elementText);
         return counter;
     }
 
