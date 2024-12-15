@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 
 public class HomePageTest extends BaseTest {
     ProductSelection productSelectionPage;
@@ -25,27 +24,21 @@ public class HomePageTest extends BaseTest {
 
     @Test
     void hairDryerTest() {
-
-        browser.findElement(By.cssSelector(".desktop-menu__item-title")).click();
-
-        //click on hair dryers
-        browser.findElement(By.xpath("//a[@href='/feny']")).click();
+        productPage.openMainMenu();
+        productPage.openHairDryers();
         waitFor(5);
         productSelectionPage.selectPopularProduct((0));
 
         waitFor(5);
-        var expectedName = browser.findElement(By.cssSelector(".detail__title--desktop")).getText();
+        var expectedName = productPage.getNameOfTheProduct();
 
-        //Add to cart
         productPage.addToCart();
 
-        //Open cart
         waitFor(5);
-        var openCart_element = browser.findElement(By.cssSelector(".cross-sell__button__to-cart__to"));
-        openCart_element.click();
+        mallPage.goToCart();
 
         waitFor(5);
-        var actualName = browser.findElement(By.cssSelector(".cart-overview-item-title a")).getText();
+        var actualName = cartPage.getNameOfProductInCart();
 
         Assertions.assertEquals(expectedName, actualName);
     }

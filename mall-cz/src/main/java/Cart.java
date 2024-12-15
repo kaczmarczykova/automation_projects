@@ -26,4 +26,18 @@ public class Cart extends MallPage {
     void deleteItem(int index) {
         browser.findElements(By.cssSelector(".cart-overview-item-row__delete .cart__remove-icon")).get(index).click();
     }
+
+    void increaseCountOfProducts() {
+        // var plus = browser.findElement(By.xpath("//span[@data-v-58657a24='+']"));
+        // var plus = browser.findElement(By.cssSelector(".cart-overview-item-row__count.article-counter__btn--plus"));
+        // var plus = browser.findElement(By.xpath("//button[contains(@class, 'article-counter__btn--plus')]"));
+        var productField = browser.findElements(By.cssSelector(".cart-overview-item-row")).getFirst();
+        var plus = productField.findElement(By.cssSelector(".article-counter__btn--plus" ));
+        plus.click();
+    }
+
+    String getNameOfProductInCart() {
+        var name = browser.findElement(By.cssSelector(".cart-overview-item-title a")).getText();
+        return name;
+    }
 }

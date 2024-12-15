@@ -17,7 +17,15 @@ public class MallPage {
 
     void goToCart() {
         browser.findElement(By.xpath("//a[@data-sel='nav-widget-cart-link']")).click();
+
+        //varianta 2
+        /*
+        var openCart_element = browser.findElement(By.cssSelector(".cross-sell__button__to-cart__to"));
+        openCart_element.click();
+         */
     }
+
+
 
     void getLogged(String email, String password) {
         //browser.findElement(By.cssSelector(".desktop-icons__item--user")).click();
