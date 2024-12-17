@@ -2,6 +2,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 public class OneLastProductTest extends BaseTest {
     ProductSelection productSelectionPage;
@@ -21,9 +24,12 @@ public class OneLastProductTest extends BaseTest {
     @Test
     void pickTheCheapestProduct() {
         oneLastProduct.openTheClearanceSale();
+        waitFor(3);
+        closeAdvertisement();
         scrollDown();
         waitFor(3);
         oneLastProduct.sortByLowestPrice();
+        waitFor(3);
         oneLastProduct.selectProductWithLastTwoPieces();
         mallPage.goToCart();
         waitFor(3);
@@ -34,9 +40,11 @@ public class OneLastProductTest extends BaseTest {
     @Test
     void getTwoPieces() {
 
-        /*browser.findElement(By.cssSelector(".desktop-menu__item-title")).click();
+        browser.findElement(By.cssSelector(".desktop-menu__item-title")).click();
         //click on hair dryers
         browser.findElement(By.xpath("//a[@href='/feny']")).click();
+        waitFor(3);
+        closeAdvertisement();
         waitFor(3);
         productSelectionPage.selectPopularProduct((0));
         waitFor(3);
@@ -46,7 +54,7 @@ public class OneLastProductTest extends BaseTest {
         //Open cart
         waitFor(5);
         var openCart_element = browser.findElement(By.cssSelector(".cross-sell__button__to-cart__to"));
-        openCart_element.click();*/
+        openCart_element.click();
 
         //teprve tady zacina test
         cartPage.increaseCountOfProducts();
@@ -73,6 +81,3 @@ public class OneLastProductTest extends BaseTest {
         Assertions.assertEquals("true", actualStatus);
     }
 }
-
-
-

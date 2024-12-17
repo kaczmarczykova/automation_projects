@@ -9,11 +9,11 @@ public class MallPage {
     public MallPage(WebDriver browser) {
         this.browser = browser;
         browser.manage().window().maximize();
-        }
+    }
 
     void mainLogo() {
         browser.findElement(By.cssSelector(".header__big-logo")).click();
-        }
+    }
 
     void goToCart() {
         browser.findElement(By.xpath("//a[@data-sel='nav-widget-cart-link']")).click();
@@ -42,4 +42,3 @@ public class MallPage {
 
 
 }
-
