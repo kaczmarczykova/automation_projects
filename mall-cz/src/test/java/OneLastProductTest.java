@@ -1,10 +1,7 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
-import java.util.List;
 
 public class OneLastProductTest extends BaseTest {
     ProductSelection productSelectionPage;
@@ -19,65 +16,48 @@ public class OneLastProductTest extends BaseTest {
         productPage = new Product(browser);
         cartPage = new Cart(browser);
         oneLastProduct = new OneLastProduct(browser);
+        basePage = new BasePage(browser);
     }
 
     @Test
     void pickTheCheapestProduct() {
         oneLastProduct.openTheClearanceSale();
-        waitFor(3);
-        closeAdvertisement();
-        scrollDown();
-        waitFor(3);
+        basePage.closeAdvertisement();
+        basePage.scrollDown();
         oneLastProduct.sortByLowestPrice();
-        waitFor(3);
         oneLastProduct.selectProductWithLastTwoPieces();
         mallPage.goToCart();
-        waitFor(3);
-        int count = cartPage.howManyItemsInCart();
+        int count = cartPage.GetCountOfItemsInCart();
         Assertions.assertEquals(1, count);
     }
 
-    @Test
+    @RepeatedTest(5)
     void getTwoPieces() {
-
-        browser.findElement(By.cssSelector(".desktop-menu__item-title")).click();
-        //click on hair dryers
-        browser.findElement(By.xpath("//a[@href='/feny']")).click();
-        waitFor(3);
-        closeAdvertisement();
-        waitFor(3);
-        productSelectionPage.selectPopularProduct((0));
-        waitFor(3);
-        var expectedName = browser.findElement(By.cssSelector(".detail__title--desktop")).getText();
-        //Add to cart
-        productPage.addToCart();
-        //Open cart
-        waitFor(5);
-        var openCart_element = browser.findElement(By.cssSelector(".cross-sell__button__to-cart__to"));
-        openCart_element.click();
+        oneLastProduct.openTheClearanceSale();
+        basePage.closeAdvertisement();
+        basePage.scrollDown();
+        oneLastProduct.sortByLowestPrice();
+        oneLastProduct.selectProductWithLastTwoPieces();
+        mallPage.goToCart();
 
         //teprve tady zacina test
         cartPage.increaseCountOfProducts();
-        waitFor(3);
-        int count2 = cartPage.howManyItemsInCart();
+        int count2 = cartPage.GetCountOfItemsInCart();
         Assertions.assertEquals(2, count2);
     }
 
     @Test
-    void ThirdIsNotAvailable() {
-        /*
+    void checkThirdIsNotAvailable() {
         oneLastProduct.openTheClearanceSale();
-        scrollDown();
-        waitFor(3);
+        basePage.closeAdvertisement();
+        basePage.scrollDown();
         oneLastProduct.sortByLowestPrice();
         oneLastProduct.selectProductWithLastTwoPieces();
         mallPage.goToCart();
-        waitFor(3);*/
+        cartPage.increaseCountOfProducts();
 
-        var productField = browser.findElements(By.cssSelector(".cart-overview-item-row")).getFirst();
-        var plusButton = productField.findElement(By.cssSelector(".article-counter__btn--plus" ));
-        waitFor(3);
-        var actualStatus = plusButton.getAttribute("disabled");
+        //teprve tady zacina test
+        var actualStatus = oneLastProduct.identifyThePlusButton();
         Assertions.assertEquals("true", actualStatus);
     }
 }

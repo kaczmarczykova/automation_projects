@@ -7,16 +7,17 @@ public class ProductSelection extends MallPage {
         super(browser);
     }
 
-  void showMore() {
+    void showMore() {
         browser.findElement(By.cssSelector(".description-accordion__open")).click();
-  }
+    }
 
-  void selectPopularProduct(int index) {
+    void selectPopularProduct(int index) {
+        wait.until(s->browser.findElements(By.cssSelector(".bs__name")).get(index).isDisplayed());
         browser.findElements(By.cssSelector(".bs__name")).get(index).click();
-  }
+    }
 
-  void showMorePopularProducts() {
+    void showMorePopularProducts() {
         browser.findElement(By.cssSelector(".bs__show-more-link")).click();
-  }
+    }
 
 }

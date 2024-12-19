@@ -19,9 +19,8 @@ public class Product extends MallPage {
     }
 
     String getNameOfTheProduct() {
+        wait.until(s->browser.findElement(By.cssSelector(".detail__title--desktop")).isDisplayed());
         var name = browser.findElement(By.cssSelector(".detail__title--desktop")).getText();
         return name;
     }
-
-
 }

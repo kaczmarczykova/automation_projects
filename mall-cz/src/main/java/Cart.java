@@ -7,7 +7,8 @@ public class Cart extends MallPage {
         super(browser);
     }
 
-    int howManyItemsInCart() {
+    int GetCountOfItemsInCart() {
+        wait.until(s->browser.findElement(By.cssSelector(".article-counter__input")).isDisplayed());
         var element = browser.findElements(By.cssSelector(".article-counter__input")).getFirst();
         var elementText = element.getAttribute("value");
         var counter = Integer.parseInt(elementText);
@@ -27,15 +28,14 @@ public class Cart extends MallPage {
     }
 
     void increaseCountOfProducts() {
-        // var plus = browser.findElement(By.xpath("//span[@data-v-58657a24='+']"));
-        // var plus = browser.findElement(By.cssSelector(".cart-overview-item-row__count.article-counter__btn--plus"));
-        // var plus = browser.findElement(By.xpath("//button[contains(@class, 'article-counter__btn--plus')]"));
+        wait.until(s->browser.findElement(By.cssSelector(".cart-overview-item-row")).isDisplayed());
         var productField = browser.findElements(By.cssSelector(".cart-overview-item-row")).getFirst();
         var plus = productField.findElement(By.cssSelector(".article-counter__btn--plus" ));
         plus.click();
     }
 
     String getNameOfProductInCart() {
+        wait.until(s->browser.findElement(By.cssSelector(".cart-overview-item-title a")).isDisplayed());
         var name = browser.findElement(By.cssSelector(".cart-overview-item-title a")).getText();
         return name;
     }

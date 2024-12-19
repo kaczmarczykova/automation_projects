@@ -26,18 +26,13 @@ public class HomePageTest extends BaseTest {
     void hairDryerTest() {
         productPage.openMainMenu();
         productPage.openHairDryers();
-        waitFor(5);
         productSelectionPage.selectPopularProduct((0));
 
-        waitFor(5);
         var expectedName = productPage.getNameOfTheProduct();
 
         productPage.addToCart();
-
-        waitFor(5);
         mallPage.goToCart();
 
-        waitFor(5);
         var actualName = cartPage.getNameOfProductInCart();
 
         Assertions.assertEquals(expectedName, actualName);

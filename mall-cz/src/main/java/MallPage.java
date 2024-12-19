@@ -2,12 +2,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class MallPage {
     WebDriver browser;
+    WebDriverWait wait;
 
     public MallPage(WebDriver browser) {
         this.browser = browser;
+        this.wait = new WebDriverWait(browser, Duration.ofMillis(3000));
         browser.manage().window().maximize();
     }
 
@@ -16,6 +21,7 @@ public class MallPage {
     }
 
     void goToCart() {
+        wait.until(s->browser.findElement(By.xpath("//a[@data-sel='nav-widget-cart-link']")).isDisplayed());
         browser.findElement(By.xpath("//a[@data-sel='nav-widget-cart-link']")).click();
 
         //varianta 2
@@ -24,8 +30,6 @@ public class MallPage {
         openCart_element.click();
          */
     }
-
-
 
     void getLogged(String email, String password) {
         //browser.findElement(By.cssSelector(".desktop-icons__item--user")).click();

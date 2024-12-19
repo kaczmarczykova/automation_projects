@@ -14,10 +14,12 @@ public class OneLastProduct extends MallPage {
     }
 
     void sortByLowestPrice() {
+        wait.until(s->browser.findElement(By.xpath("//a[@data-sel='sort-lowPrice']")).isDisplayed());
         browser.findElement(By.xpath("//a[@data-sel='sort-lowPrice']")).click();
     }
 
     void selectProductWithLastTwoPieces() {
+        wait.until(s->browser.findElement(By.id("content-anchor")).isDisplayed());
         try {
             // Najdeme všechny produkty na stránce (nastavte správný selektor)
             List<WebElement> productItems = browser.findElements(By.cssSelector(".pbcr"));
@@ -58,4 +60,13 @@ public class OneLastProduct extends MallPage {
         }
     }
 
+    boolean identifyThePlusButton() {
+        var productField = browser.findElements(By.cssSelector(".cart-overview-item-row")).getFirst();
+        var plusButton = productField.findElement(By.cssSelector(".article-counter__btn--plus" ));
+        var buttonAttribute = plusButton.getAttribute("disabled");
+        if (buttonAttribute.equals("true")) {
+            return true;
+        }
+        return false;
+    }
 }
