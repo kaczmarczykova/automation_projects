@@ -26,7 +26,7 @@ public class HomePageTest extends BaseTest {
     void hairDryerTest() {
         productPage.openMainMenu();
         productPage.openHairDryers();
-        productSelectionPage.selectPopularProduct((0));
+        productSelectionPage.selectPopularProduct(0);
 
         var expectedName = productPage.getNameOfTheProduct();
 

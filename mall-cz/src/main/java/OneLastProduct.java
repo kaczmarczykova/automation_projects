@@ -60,13 +60,10 @@ public class OneLastProduct extends MallPage {
         }
     }
 
-    boolean identifyThePlusButton() {
+    boolean isPlusButtonDisabled() {
         var productField = browser.findElements(By.cssSelector(".cart-overview-item-row")).getFirst();
-        var plusButton = productField.findElement(By.cssSelector(".article-counter__btn--plus" ));
+        var plusButton = productField.findElement(By.cssSelector(".article-counter__btn--plus"));
         var buttonAttribute = plusButton.getAttribute("disabled");
-        if (buttonAttribute.equals("true")) {
-            return true;
-        }
-        return false;
+        return buttonAttribute != null && buttonAttribute.equals("true");
     }
 }

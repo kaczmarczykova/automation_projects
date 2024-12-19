@@ -27,7 +27,7 @@ public class OneLastProductTest extends BaseTest {
         oneLastProduct.sortByLowestPrice();
         oneLastProduct.selectProductWithLastTwoPieces();
         mallPage.goToCart();
-        int count = cartPage.GetCountOfItemsInCart();
+        int count = cartPage.getCountOfItemsInCart();
         Assertions.assertEquals(1, count);
     }
 
@@ -42,7 +42,7 @@ public class OneLastProductTest extends BaseTest {
 
         //teprve tady zacina test
         cartPage.increaseCountOfProducts();
-        int count2 = cartPage.GetCountOfItemsInCart();
+        int count2 = cartPage.getCountOfItemsInCart();
         Assertions.assertEquals(2, count2);
     }
 
@@ -57,7 +57,7 @@ public class OneLastProductTest extends BaseTest {
         cartPage.increaseCountOfProducts();
 
         //teprve tady zacina test
-        var actualStatus = oneLastProduct.identifyThePlusButton();
-        Assertions.assertEquals("true", actualStatus);
+        var actualStatus = oneLastProduct.isPlusButtonDisabled();
+        Assertions.assertTrue(actualStatus);
     }
 }

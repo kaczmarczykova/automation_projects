@@ -7,12 +7,11 @@ public class Cart extends MallPage {
         super(browser);
     }
 
-    int GetCountOfItemsInCart() {
+    int getCountOfItemsInCart() {
         wait.until(s->browser.findElement(By.cssSelector(".article-counter__input")).isDisplayed());
         var element = browser.findElements(By.cssSelector(".article-counter__input")).getFirst();
         var elementText = element.getAttribute("value");
-        var counter = Integer.parseInt(elementText);
-        return counter;
+        return Integer.parseInt(elementText);
     }
 
     void goBack() {

@@ -31,7 +31,6 @@ public class BasePage extends MallPage {
                 try {
                     WebElement removeButton = item.findElement(By.cssSelector(".cart-overview-item-row__delete"));
                     removeButton.click();
-
                 } catch (Exception e) {
                     System.out.println("Chyba při pokusu o odstranění položky: " + e.getMessage());
                 }
