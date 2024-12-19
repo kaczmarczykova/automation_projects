@@ -35,7 +35,6 @@ public class Cart extends MallPage {
 
     String getNameOfProductInCart() {
         wait.until(s->browser.findElement(By.cssSelector(".cart-overview-item-title a")).isDisplayed());
-        var name = browser.findElement(By.cssSelector(".cart-overview-item-title a")).getText();
-        return name;
-    }
+        return browser.findElement(By.cssSelector(".cart-overview-item-title a")).getText();
+        }
 }
