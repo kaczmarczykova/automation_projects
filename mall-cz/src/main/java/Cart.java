@@ -1,5 +1,8 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 public class Cart extends MallPage {
 
@@ -7,8 +10,8 @@ public class Cart extends MallPage {
         super(browser);
     }
 
-    int getCountOfItemsInCart() {
-        wait.until(s->browser.findElement(By.cssSelector(".article-counter__input")).isDisplayed());
+    int getCountOfThisItem() {
+        wait.until(s -> browser.findElement(By.cssSelector(".article-counter__input")).isDisplayed());
         var element = browser.findElements(By.cssSelector(".article-counter__input")).getFirst();
         var elementText = element.getAttribute("value");
         return Integer.parseInt(elementText);
@@ -27,14 +30,24 @@ public class Cart extends MallPage {
     }
 
     void increaseCountOfProducts() {
-        wait.until(s->browser.findElement(By.cssSelector(".cart-overview-item-row")).isDisplayed());
+        wait.until(s -> browser.findElement(By.cssSelector(".cart-overview-item-row")).isDisplayed());
         var productField = browser.findElements(By.cssSelector(".cart-overview-item-row")).getFirst();
-        var plus = productField.findElement(By.cssSelector(".article-counter__btn--plus" ));
+        var plus = productField.findElement(By.cssSelector(".article-counter__btn--plus"));
         plus.click();
     }
 
     String getNameOfProductInCart() {
-        wait.until(s->browser.findElement(By.cssSelector(".cart-overview-item-title a")).isDisplayed());
+        wait.until(s -> browser.findElement(By.cssSelector(".cart-overview-item-title a")).isDisplayed());
         return browser.findElement(By.cssSelector(".cart-overview-item-title a")).getText();
+    }
+
+    Integer getTheCountOfItemsInCart() {
+        /*List<WebElement> itemsInCart = browser.findElements(By.cssSelector(".cart-overview-item"));
+        int count = 0;
+        for (WebElement item : itemsInCart) {
+            int count = count + 1;
         }
+        return count;*/
+        return browser.findElements(By.cssSelector(".cart-overview-item")).size();
+    }
 }

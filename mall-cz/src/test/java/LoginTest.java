@@ -5,14 +5,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class LoginTest extends BaseTest {
-    ProductSelection productSelectionPage;
     Product productPage;
     Cart cartPage;
 
 
     @BeforeEach
     void beforeTest() {
-        productSelectionPage = new ProductSelection(browser);
         productPage = new Product(browser);
         cartPage = new Cart(browser);
     }

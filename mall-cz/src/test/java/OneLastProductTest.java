@@ -4,7 +4,6 @@ import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 public class OneLastProductTest extends BaseTest {
-    ProductSelection productSelectionPage;
     Product productPage;
     Cart cartPage;
     OneLastProduct oneLastProduct;
@@ -12,7 +11,6 @@ public class OneLastProductTest extends BaseTest {
 
     @BeforeEach
     void beforeTest() {
-        productSelectionPage = new ProductSelection(browser);
         productPage = new Product(browser);
         cartPage = new Cart(browser);
         oneLastProduct = new OneLastProduct(browser);
@@ -27,7 +25,7 @@ public class OneLastProductTest extends BaseTest {
         oneLastProduct.sortByLowestPrice();
         oneLastProduct.selectProductWithLastTwoPieces();
         mallPage.goToCart();
-        int count = cartPage.getCountOfItemsInCart();
+        int count = cartPage.getCountOfThisItem();
         Assertions.assertEquals(1, count);
     }
 
@@ -42,7 +40,7 @@ public class OneLastProductTest extends BaseTest {
 
         //teprve tady zacina test
         cartPage.increaseCountOfProducts();
-        int count2 = cartPage.getCountOfItemsInCart();
+        int count2 = cartPage.getCountOfThisItem();
         Assertions.assertEquals(2, count2);
     }
 

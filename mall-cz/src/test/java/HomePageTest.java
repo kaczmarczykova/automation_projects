@@ -3,15 +3,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class HomePageTest extends BaseTest {
-    ProductSelection productSelectionPage;
     Product productPage;
     Cart cartPage;
 
-
-
     @BeforeEach
     void beforeTest() {
-        productSelectionPage = new ProductSelection(browser);
         productPage = new Product(browser);
         cartPage = new Cart(browser);
     }
@@ -26,7 +22,7 @@ public class HomePageTest extends BaseTest {
     void hairDryerTest() {
         productPage.openMainMenu();
         productPage.openHairDryers();
-        productSelectionPage.selectPopularProduct(0);
+        productPage.selectPopularProduct(0);
 
         var expectedName = productPage.getNameOfTheProduct();
 

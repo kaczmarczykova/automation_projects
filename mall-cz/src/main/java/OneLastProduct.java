@@ -21,7 +21,7 @@ public class OneLastProduct extends MallPage {
     void selectProductWithLastTwoPieces() {
         wait.until(s->browser.findElement(By.id("content-anchor")).isDisplayed());
         try {
-            // Najdeme všechny produkty na stránce (nastavte správný selektor)
+            // Najdeme všechny produkty na stránce
             List<WebElement> productItems = browser.findElements(By.cssSelector(".pbcr"));
 
             boolean itemAdded = false;
@@ -37,7 +37,7 @@ public class OneLastProduct extends MallPage {
                     // Zkontrolujeme, zda text obsahuje přesně "2 ks"
                     if (stockText.contains("2")) {
 
-                        // Klikneme na tlačítko "Přidat do košíku" (musíte najít správný selektor tlačítka)
+                        // Klikneme na tlačítko "Přidat do košíku"
                         WebElement addToCartButton = product.findElement(By.cssSelector(".rounded-button__wrapper__slot"));
                         addToCartButton.click();
 
