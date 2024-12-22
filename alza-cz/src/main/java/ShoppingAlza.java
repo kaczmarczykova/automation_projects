@@ -17,6 +17,7 @@ public class ShoppingAlza extends AlzaPage {
     }
 
     void selectTVs() {
+        wait.until(s->browser.findElement(By.linkText("Televize")).isDisplayed());
         var tvElement = browser.findElement(By.linkText("Televize"));
         tvElement.click();
     }
@@ -27,10 +28,12 @@ public class ShoppingAlza extends AlzaPage {
     }
 
     void addToCart () {
-                browser.findElement(By.cssSelector(".price-detail__buy-actions")).click();
+        wait.until(s->browser.findElement(By.cssSelector(".price-detail__buy-actions")).isDisplayed());
+        browser.findElement(By.cssSelector(".price-detail__buy-actions")).click();
     }
 
     void openProductPage() {
+        wait.until(s->browser.findElements(By.cssSelector(".pc.browsinglink.js-box-link")).get(0).isDisplayed());
         browser.findElements(By.cssSelector(".pc.browsinglink.js-box-link")).get(0).click();
     }
 

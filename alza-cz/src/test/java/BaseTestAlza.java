@@ -1,26 +1,26 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.openqa.selenium.*;
+import org.openqa.selenium.WebDriver;
 
-
-public class BaseTest {
+public class BaseTestAlza {
     WebDriver browser = WebDriverManager.chromedriver().create();
-    MallPage mallPage = new MallPage(browser);
+    AlzaPage alzaPage = new AlzaPage(browser);
 
     @BeforeEach
     void commonBeforeTest() {
-        mallPage.setTheWaitTime();
-        mallPage.goToHomePage();
+        alzaPage.setTheWaitTime();
+        alzaPage.goToHomePage();
         //accept cookies
-        mallPage.acceptCookies();
+        alzaPage.acceptCookies();
     }
 
     @AfterEach
     void commonAfterTest() {
-        mallPage.scrollUp();
-        mallPage.goToCart();
-        mallPage.clearCart();
+        alzaPage.scrollUp();
+        alzaPage.openCart();
+        alzaPage.clearCart();
     }
 
 }
+

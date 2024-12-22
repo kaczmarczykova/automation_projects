@@ -37,13 +37,13 @@ public class Product extends MallPage {
         browser.findElement(By.xpath("//a[@href='/televizory']")).click();
     }
 
-    void selectTVs() {
+    void selectTVs(int number) {
         wait.until(s -> browser.findElement(By.cssSelector(".category-products-wrap")).isDisplayed());
 
         //this commented part is my version
 
         //List<WebElement> productItems = browser.findElements(By.cssSelector(".pbcr"));
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < number; i++) {
             browser.findElements(By.xpath("//button[@data-sel='add-to-cart-button-main']")).get(i).click();
             var pageIsRedirected = browser.findElement(By.cssSelector(".cross-sell__success"));
             wait.until(s -> pageIsRedirected).isDisplayed();

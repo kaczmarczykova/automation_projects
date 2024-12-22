@@ -14,14 +14,13 @@ public class OneLastProductTest extends BaseTest {
         productPage = new Product(browser);
         cartPage = new Cart(browser);
         oneLastProduct = new OneLastProduct(browser);
-        basePage = new BasePage(browser);
     }
 
     @Test
     void pickTheCheapestProduct() {
         oneLastProduct.openTheClearanceSale();
-        basePage.closeAdvertisement();
-        basePage.scrollDown();
+        mallPage.closeAdvertisement();
+        mallPage.scrollDown();
         oneLastProduct.sortByLowestPrice();
         oneLastProduct.selectProductWithLastTwoPieces();
         mallPage.goToCart();
@@ -32,8 +31,8 @@ public class OneLastProductTest extends BaseTest {
     @RepeatedTest(5)
     void getTwoPieces() {
         oneLastProduct.openTheClearanceSale();
-        basePage.closeAdvertisement();
-        basePage.scrollDown();
+        mallPage.closeAdvertisement();
+        mallPage.scrollDown();
         oneLastProduct.sortByLowestPrice();
         oneLastProduct.selectProductWithLastTwoPieces();
         mallPage.goToCart();
@@ -47,8 +46,8 @@ public class OneLastProductTest extends BaseTest {
     @Test
     void checkThirdIsNotAvailable() {
         oneLastProduct.openTheClearanceSale();
-        basePage.closeAdvertisement();
-        basePage.scrollDown();
+        mallPage.closeAdvertisement();
+        mallPage.scrollDown();
         oneLastProduct.sortByLowestPrice();
         oneLastProduct.selectProductWithLastTwoPieces();
         mallPage.goToCart();

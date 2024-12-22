@@ -43,7 +43,4 @@ public class HomePageTest extends BaseTest {
         cartPage.goToCart();
         cartPage.deleteItem(0);
     }
-
-
-
 }

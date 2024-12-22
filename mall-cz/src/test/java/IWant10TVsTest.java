@@ -16,8 +16,9 @@ public class IWant10TVsTest extends BaseTest{
     void tenTVsTest() {
         productPage.openMainMenu();
         productPage.openTVs();
-        basePage.closeAdvertisement();
-        productPage.selectTVs();
+        mallPage.closeAdvertisement();
+        productPage.selectTVs(10);
+        mallPage.clickMainLogo();
         mallPage.goToCart();
         var actualCount = cartPage.getTheCountOfItemsInCart();
         Assertions.assertEquals(10, actualCount);

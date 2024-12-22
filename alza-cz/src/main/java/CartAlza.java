@@ -36,11 +36,13 @@ public class CartAlza extends AlzaPage {
     }
 
     void increaseNumber() {
+        wait.until(s->browser.findElement(By.cssSelector(".countPlus")).isDisplayed());
         var increaseButton = browser.findElement(By.cssSelector(".countPlus"));
         increaseButton.click();
     }
 
     int getActualPrice() {
+        wait.until(s->browser.findElement(By.cssSelector(".o1sum .price")).isDisplayed());
         var actualPrice = browser.findElement(By.cssSelector(".o1sum .price")).getText();
         actualPrice = actualPrice.replaceAll("[^\\d]", "");// Např. "12 345 Kč" → "12345"
         int number = Integer.parseInt(actualPrice); // Převod na integer
