@@ -37,18 +37,24 @@ public class Product extends MallPage {
         browser.findElement(By.xpath("//a[@href='/televizory']")).click();
     }
 
-    void selectTVs(int number) {
+    int selectTVs(int number) {
         wait.until(s -> browser.findElement(By.cssSelector(".category-products-wrap")).isDisplayed());
 
-        //this commented part is my version
-
+        //this part is my version
         //List<WebElement> productItems = browser.findElements(By.cssSelector(".pbcr"));
+        var totalPrice =0;
         for (int i = 0; i < number; i++) {
-            browser.findElements(By.xpath("//button[@data-sel='add-to-cart-button-main']")).get(i).click();
+            var TV = browser.findElements(By.xpath("//button[@data-sel='add-to-cart-button-main']")).get(i);
+            var singlePrice = browser.findElements(By.cssSelector(".pb-price__price")).get(i).getText();
+            singlePrice = singlePrice.replaceAll("[^\\d]", "");
+            int intSinglePrice = Integer.parseInt(singlePrice);
+            totalPrice += intSinglePrice;
+            TV.click();
             var pageIsRedirected = browser.findElement(By.cssSelector(".cross-sell__success"));
             wait.until(s -> pageIsRedirected).isDisplayed();
             browser.findElement(By.cssSelector(".cross-sell__button__close")).click();
             }
+        return totalPrice;
         }
 
         // this version is chatGPT
@@ -65,5 +71,6 @@ public class Product extends MallPage {
                 //continue
             }
         }*/
+
 
 }

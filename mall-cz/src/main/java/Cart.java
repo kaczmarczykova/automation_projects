@@ -50,4 +50,19 @@ public class Cart extends MallPage {
         return count;*/
         return browser.findElements(By.cssSelector(".cart-overview-item")).size();
     }
+
+    int getThePriceItemByItem() {
+        List<WebElement> itemsInCart = browser.findElements(By.cssSelector(".cart-overview-item"));
+        int cartPrice = 0;
+        for (WebElement item : itemsInCart) {
+            WebElement locateItemPrice = item.findElement(By.cssSelector(".cart-overview-item-row__price"));
+            var itemPrice = locateItemPrice.getText();
+            itemPrice = itemPrice.replaceAll("[^\\d]", "");
+            int intItemPrice = Integer.parseInt(itemPrice);
+            cartPrice += intItemPrice;
+        }
+        return cartPrice;
+    }
+
+
 }
