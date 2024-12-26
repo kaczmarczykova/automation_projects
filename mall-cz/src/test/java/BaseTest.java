@@ -19,6 +19,7 @@ public class BaseTest {
     @AfterEach
     void commonAfterTest() {
         mallPage.scrollUp();
+        mallPage.goToHomePage();
         mallPage.goToCart();
         mallPage.clearCart();
     }
