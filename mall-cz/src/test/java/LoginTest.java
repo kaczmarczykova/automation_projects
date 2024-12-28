@@ -8,7 +8,6 @@ public class LoginTest extends BaseTest {
     Product productPage;
     Cart cartPage;
 
-
     @BeforeEach
     void beforeTest() {
         productPage = new Product(browser);
@@ -19,7 +18,6 @@ public class LoginTest extends BaseTest {
     void loginTest() {
         cartPage.getLogged("blbec", "blbec");
         WebElement message = browser.findElement(By.cssSelector(".login-form__error-message"));
-
         Assertions.assertTrue(message.isDisplayed());
     }
 }

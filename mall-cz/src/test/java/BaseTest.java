@@ -7,11 +7,13 @@ import org.openqa.selenium.*;
 public class BaseTest {
     WebDriver browser = WebDriverManager.chromedriver().create();
     MallPage mallPage = new MallPage(browser);
+    Cart cartPage = new Cart(browser);
 
     @BeforeEach
     void commonBeforeTest() {
-        mallPage.setTheWaitTime();
+        mallPage.setWaitTime();
         mallPage.goToHomePage();
+        browser.manage().window().maximize();
         //accept cookies
         mallPage.acceptCookies();
     }
@@ -21,7 +23,7 @@ public class BaseTest {
         mallPage.scrollUp();
         mallPage.goToHomePage();
         mallPage.goToCart();
-        mallPage.clearCart();
+        cartPage.clearCart();
     }
 
 }

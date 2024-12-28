@@ -21,10 +21,6 @@ public class Cart extends MallPage {
         browser.findElement(By.cssSelector(".go_back_btn")).click();
     }
 
-    void goCheckOut() {
-        browser.findElement(By.cssSelector(".cart-overview__wrapper .cart-layout__submit .btn--primary")).click();
-    }
-
     void deleteItem(int index) {
         browser.findElements(By.cssSelector(".cart-overview-item-row__delete .cart__remove-icon")).get(index).click();
     }
@@ -41,13 +37,7 @@ public class Cart extends MallPage {
         return browser.findElement(By.cssSelector(".cart-overview-item-title a")).getText();
     }
 
-    Integer getTheCountOfItemsInCart() {
-        /*List<WebElement> itemsInCart = browser.findElements(By.cssSelector(".cart-overview-item"));
-        int count = 0;
-        for (WebElement item : itemsInCart) {
-            int count = count + 1;
-        }
-        return count;*/
+    Integer getCountOfItemsInCart() {
         return browser.findElements(By.cssSelector(".cart-overview-item")).size();
     }
 
@@ -64,5 +54,21 @@ public class Cart extends MallPage {
         return cartPrice;
     }
 
+    void clearCart() {
+        try {
+            // Najdeme všechny produkty na stránce
+            List<WebElement> itemsInCart = browser.findElements(By.cssSelector(".cart-overview-item"));
+
+            for (WebElement item : itemsInCart) {
+                try {
+                    WebElement removeButton = item.findElement(By.cssSelector(".cart-overview-item-row__delete"));
+                    removeButton.click();
+                } catch (Exception e) {
+                    System.out.println("Chyba při pokusu o odstranění položky: " + e.getMessage());
+                }
+            }
+        } catch (Exception e) {
+        }
+    }
 
 }

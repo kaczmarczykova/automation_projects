@@ -1,4 +1,3 @@
-import dev.failsafe.internal.util.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +21,7 @@ public class IWant10TVsTest extends BaseTest{
         mallPage.clickMainLogo();
         mallPage.scrollUp();
         mallPage.goToCart();
-        var actualCount = cartPage.getTheCountOfItemsInCart();
+        var actualCount = cartPage.getCountOfItemsInCart();
         Assertions.assertEquals(10, actualCount);
     }
 
@@ -37,6 +36,5 @@ public class IWant10TVsTest extends BaseTest{
         mallPage.goToCart();
         int totalPrice = cartPage.getThePriceItemByItem();
         Assertions.assertEquals(expectedPrice, totalPrice);
-
     }
 }

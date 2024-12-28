@@ -8,7 +8,6 @@ public class OneLastProductTest extends BaseTest {
     Cart cartPage;
     OneLastProduct oneLastProduct;
 
-
     @BeforeEach
     void beforeTest() {
         productPage = new Product(browser);
@@ -37,7 +36,7 @@ public class OneLastProductTest extends BaseTest {
         oneLastProduct.selectProductWithLastTwoPieces();
         mallPage.goToCart();
 
-        //teprve tady zacina test
+        //main part of the test:
         cartPage.increaseCountOfProducts();
         int count2 = cartPage.getCountOfThisItem();
         Assertions.assertEquals(2, count2);
@@ -53,7 +52,7 @@ public class OneLastProductTest extends BaseTest {
         mallPage.goToCart();
         cartPage.increaseCountOfProducts();
 
-        //teprve tady zacina test
+        //main part of the test:
         var actualStatus = oneLastProduct.isPlusButtonDisabled();
         Assertions.assertTrue(actualStatus);
     }

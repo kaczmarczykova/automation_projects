@@ -2,18 +2,21 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class HomePageTestAlza extends BaseTestAlza {
-    ShoppingAlza shoppingAlzaPage;
-    CartAlza cartAlzaPage;
+/* Na alza.cz si vlož do košíku nejlevnější produkt z kategorie Televize, ověř že se zde nachází (v košíku) a
+že při navýšení počtu na 2 ks se zdvojnásobí jeho cena.*/
+
+public class BuyTwoCheapestTvsTestAlza extends BaseTestAlza {
+    ShoppingAlzaPage shoppingAlzaPage;
+    CartAlzaPage cartAlzaPage;
 
     @BeforeEach
     void beforeTest() {
-        shoppingAlzaPage = new ShoppingAlza(browser);
-        cartAlzaPage = new CartAlza(browser);
+        shoppingAlzaPage = new ShoppingAlzaPage(browser);
+        cartAlzaPage = new CartAlzaPage(browser);
     }
 
     @Test
-    void homePageTest() {
+    void buyTwoCheapestTVsTest() {
 
         //click on TVs
         shoppingAlzaPage.open();

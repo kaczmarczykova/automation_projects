@@ -9,8 +9,9 @@ public class BaseTestAlza {
 
     @BeforeEach
     void commonBeforeTest() {
-        alzaPage.setTheWaitTime();
+        alzaPage.setWaitTime(5);
         alzaPage.goToHomePage();
+        browser.manage().window().maximize();
         //accept cookies
         alzaPage.acceptCookies();
     }

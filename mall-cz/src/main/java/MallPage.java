@@ -3,7 +3,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.List;
 
 public class MallPage {
     WebDriver browser;
@@ -12,7 +11,6 @@ public class MallPage {
     public MallPage(WebDriver browser) {
         this.browser = browser;
         this.wait = new WebDriverWait(browser, Duration.ofMillis(3000));
-        browser.manage().window().maximize();
     }
 
     void clickMainLogo() {
@@ -22,16 +20,9 @@ public class MallPage {
     void goToCart() {
         wait.until(s->browser.findElement(By.xpath("//a[@data-sel='nav-widget-cart-link']")).isDisplayed());
         browser.findElement(By.xpath("//a[@data-sel='nav-widget-cart-link']")).click();
-
-        //varianta 2
-        /*
-        var openCart_element = browser.findElement(By.cssSelector(".cross-sell__button__to-cart__to"));
-        openCart_element.click();
-         */
     }
 
     void getLogged(String email, String password) {
-        //browser.findElement(By.cssSelector(".desktop-icons__item--user")).click();
         WebElement targetElement = browser.findElement(By.xpath("//div[@data-testid='drop-down-trigger']"));
         // Vytvořit instanci třídy Actions
         Actions actions = new Actions(browser);
@@ -46,7 +37,7 @@ public class MallPage {
         browser.get("https://mall.cz");
     }
 
-    void setTheWaitTime() {
+    void setWaitTime() {
         browser.manage().timeouts().implicitlyWait(Duration.ofMillis(5000));
     }
 
@@ -55,30 +46,6 @@ public class MallPage {
         cookiesAcceptButton.click();
     }
 
-    void clearCart() {
-        try {
-            // Najdeme všechny produkty na stránce
-            List<WebElement> itemsInCart = browser.findElements(By.cssSelector(".cart-overview-item"));
-
-            //while (!itemsInCart.isEmpty()) {
-            for (WebElement item : itemsInCart) {
-                try {
-                    WebElement removeButton = item.findElement(By.cssSelector(".cart-overview-item-row__delete"));
-                    removeButton.click();
-                } catch (Exception e) {
-                    System.out.println("Chyba při pokusu o odstranění položky: " + e.getMessage());
-                }
-            }
-
-            // Aktualizujte seznam položek v košíku
-            //itemsInCart = browser.findElements(By.cssSelector(".cart-overview-item"));
-            //}
-
-            System.out.println("Všechny položky byly odstraněny z košíku.");
-        } catch (Exception e) {
-            System.out.println("Chyba při vymazání košíku: " + e.getMessage());
-        }
-    }
     void closeAdvertisement() {
         wait.until(s->browser.findElement(By.id("l-exponea-close")).isDisplayed());
         try {

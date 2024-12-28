@@ -1,8 +1,5 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
-import java.util.List;
 
 public class Product extends MallPage {
 
@@ -22,7 +19,7 @@ public class Product extends MallPage {
         browser.findElement(By.xpath("//a[@href='/feny']")).click();
     }
 
-    String getNameOfTheProduct() {
+    String getNameOfProduct() {
         wait.until(s->browser.findElement(By.cssSelector(".detail__title--desktop")).isDisplayed());
         return browser.findElement(By.cssSelector(".detail__title--desktop")).getText();
         }
@@ -40,8 +37,6 @@ public class Product extends MallPage {
     int selectTVs(int number) {
         wait.until(s -> browser.findElement(By.cssSelector(".category-products-wrap")).isDisplayed());
 
-        //this part is my version
-        //List<WebElement> productItems = browser.findElements(By.cssSelector(".pbcr"));
         var totalPrice =0;
         for (int i = 0; i < number; i++) {
             var TV = browser.findElements(By.xpath("//button[@data-sel='add-to-cart-button-main']")).get(i);
@@ -56,21 +51,4 @@ public class Product extends MallPage {
             }
         return totalPrice;
         }
-
-        // this version is chatGPT
-        /*List<WebElement> productItems = browser.findElements(By.xpath("//button[@data-sel='add-to-cart-button-main']"));
-        int limit = Math.min(10, productItems.size());  // Omezíme na max. 10 produktů
-        for (int i = 0; i < limit; i++) {
-            productItems.get(i).click();
-            try {
-                WebElement pageIsRedirected = wait.until(driver ->
-                        driver.findElement(By.cssSelector(".cross-sell__success")));
-                pageIsRedirected.isDisplayed();
-                browser.findElement(By.cssSelector(".cross-sell__button__close")).click();
-            } catch (Exception e) {
-                //continue
-            }
-        }*/
-
-
 }

@@ -24,7 +24,7 @@ public class HomePageTest extends BaseTest {
         productPage.openHairDryers();
         productPage.selectPopularProduct(0);
 
-        var expectedName = productPage.getNameOfTheProduct();
+        var expectedName = productPage.getNameOfProduct();
 
         productPage.addToCart();
         mallPage.goToCart();
