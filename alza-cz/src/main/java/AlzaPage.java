@@ -5,11 +5,13 @@ import java.util.List;
 
 public class AlzaPage {
     WebDriver browser;
+    JavascriptExecutor js;
     WebDriverWait wait;
-    JavascriptExecutor js = (JavascriptExecutor) browser;
+
 
     public AlzaPage(WebDriver browser) {
         this.browser = browser;
+        this.js = (JavascriptExecutor)browser;
         this.wait = new WebDriverWait(browser, Duration.ofMillis(3000));
     }
 
@@ -86,24 +88,8 @@ public class AlzaPage {
         }
     }
 
-    void clearCart() {
-        try {
-            // Identify all items on the page
-            List<WebElement> itemsInCart = browser.findElements(By.id("o1basket"));
-
-            for (WebElement item : itemsInCart) {
-                try {
-                    item.findElement(By.cssSelector(".c6")).click();
-                    WebElement removeProductButton = item.findElement(By.cssSelector(".js-item-options-del"));
-                    removeProductButton.click();
-                } catch (Exception e) {
-                    }
-            }
-        } catch (Exception e) {
-        }
-    }
-
     void changeLanguageVersion() {
+        scrollDown();
         browser.findElement(By.xpath("//span[@data-testid='footerLanguageSwitcher']")).click();
         wait.until(s-> browser.findElement(By.xpath("//input[@value='cs-CZ']")).isDisplayed());
 
@@ -114,6 +100,14 @@ public class AlzaPage {
         }
         //Click the button to change the language
         browser.findElement(By.xpath("//button[contains(text(),'Confirm')]")).click();
+    }
+
+    String getLanguageVersionInHeader() {
+        return browser.findElement(By.cssSelector(".header-alz-20")).getAttribute("alt");
+    }
+
+    String getLanguageVersionInFooter() {
+        return browser.findElement(By.cssSelector(".footer-alz-7")).getAttribute("alt");
     }
 }
 

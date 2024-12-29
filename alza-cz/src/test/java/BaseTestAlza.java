@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 public class BaseTestAlza {
     WebDriver browser = WebDriverManager.chromedriver().create();
     AlzaPage alzaPage = new AlzaPage(browser);
+    CartPage cartPage = new CartPage(browser);
 
     @BeforeEach
     void commonBeforeTest() {
@@ -18,9 +19,9 @@ public class BaseTestAlza {
 
     @AfterEach
     void commonAfterTest() {
-        alzaPage.scrollUp();
+        alzaPage.goToHomePage();
         alzaPage.openCart();
-        alzaPage.clearCart();
+        cartPage.clearCart();
     }
 
 }

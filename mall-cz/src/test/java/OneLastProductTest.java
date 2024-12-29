@@ -37,7 +37,7 @@ public class OneLastProductTest extends BaseTest {
         mallPage.goToCart();
 
         //main part of the test:
-        cartPage.increaseCountOfProducts();
+        cartPage.increaseCountOfProducts(0);
         int count2 = cartPage.getCountOfThisItem();
         Assertions.assertEquals(2, count2);
     }
@@ -50,7 +50,7 @@ public class OneLastProductTest extends BaseTest {
         oneLastProduct.sortByLowestPrice();
         oneLastProduct.selectProductWithLastTwoPieces();
         mallPage.goToCart();
-        cartPage.increaseCountOfProducts();
+        cartPage.increaseCountOfProducts(0);
 
         //main part of the test:
         var actualStatus = oneLastProduct.isPlusButtonDisabled();

@@ -1,9 +1,12 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
-public class CartAlzaPage extends AlzaPage {
+import java.util.List;
 
-    CartAlzaPage(WebDriver browser) {
+public class CartPage extends AlzaPage {
+
+    CartPage(WebDriver browser) {
         super(browser);
     }
 
@@ -25,5 +28,22 @@ public class CartAlzaPage extends AlzaPage {
         actualPrice = actualPrice.replaceAll("[^\\d]", "");// "12 345 Kč" → "12345"
         int number = Integer.parseInt(actualPrice); // Convert to integer
         return number;
+    }
+
+    void clearCart() {
+        try {
+            // Identify all items on the page
+            List<WebElement> itemsInCart = browser.findElements(By.id("o1basket"));
+
+            for (WebElement item : itemsInCart) {
+                try {
+                    item.findElement(By.cssSelector(".c6")).click();
+                    WebElement removeProductButton = item.findElement(By.cssSelector(".js-item-options-del"));
+                    removeProductButton.click();
+                } catch (Exception e) {
+                }
+            }
+        } catch (Exception e) {
+        }
     }
 }

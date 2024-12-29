@@ -25,9 +25,9 @@ public class Cart extends MallPage {
         browser.findElements(By.cssSelector(".cart-overview-item-row__delete .cart__remove-icon")).get(index).click();
     }
 
-    void increaseCountOfProducts() {
+    void increaseCountOfProducts(int idx) {
         wait.until(s -> browser.findElement(By.cssSelector(".cart-overview-item-row")).isDisplayed());
-        var productField = browser.findElements(By.cssSelector(".cart-overview-item-row")).getFirst();
+        var productField = browser.findElements(By.cssSelector(".cart-overview-item-row")).get(idx);
         var plus = productField.findElement(By.cssSelector(".article-counter__btn--plus"));
         plus.click();
     }
@@ -41,13 +41,13 @@ public class Cart extends MallPage {
         return browser.findElements(By.cssSelector(".cart-overview-item")).size();
     }
 
-    int getThePriceItemByItem() {
+    int getTotalPrice() {
         List<WebElement> itemsInCart = browser.findElements(By.cssSelector(".cart-overview-item"));
         int cartPrice = 0;
         for (WebElement item : itemsInCart) {
             WebElement locateItemPrice = item.findElement(By.cssSelector(".cart-overview-item-row__price"));
             var itemPrice = locateItemPrice.getText();
-            itemPrice = itemPrice.replaceAll("[^\\d]", "");
+            itemPrice = itemPrice.replaceAll("\\D", "");
             int intItemPrice = Integer.parseInt(itemPrice);
             cartPrice += intItemPrice;
         }
@@ -56,7 +56,7 @@ public class Cart extends MallPage {
 
     void clearCart() {
         try {
-            // Najdeme všechny produkty na stránce
+            // Identify all products on the page
             List<WebElement> itemsInCart = browser.findElements(By.cssSelector(".cart-overview-item"));
 
             for (WebElement item : itemsInCart) {
@@ -64,11 +64,9 @@ public class Cart extends MallPage {
                     WebElement removeButton = item.findElement(By.cssSelector(".cart-overview-item-row__delete"));
                     removeButton.click();
                 } catch (Exception e) {
-                    System.out.println("Chyba při pokusu o odstranění položky: " + e.getMessage());
                 }
             }
         } catch (Exception e) {
         }
     }
-
 }

@@ -1,19 +1,15 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class ShoppingAlzaPage extends AlzaPage {
+public class ProductPage extends AlzaPage {
 
-    ShoppingAlzaPage(WebDriver browser) {
+    ProductPage(WebDriver browser) {
         super(browser);
     }
 
-    void open() {
-        browser.get("https://www.alza.cz");
-    }
-
-    void selectTVsPhotoAudio() {
+    void selectTVsPhotoAudio(int idx) {
         var tvSidebarItems = browser.findElements(By.cssSelector(".l0-catLink"));
-        tvSidebarItems.get(4).click();
+        tvSidebarItems.get(idx).click();
     }
 
     void selectTVs() {

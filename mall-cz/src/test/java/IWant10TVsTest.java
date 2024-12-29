@@ -34,7 +34,7 @@ public class IWant10TVsTest extends BaseTest{
         mallPage.scrollUp();
         mallPage.clickMainLogo();
         mallPage.goToCart();
-        int totalPrice = cartPage.getThePriceItemByItem();
+        int totalPrice = cartPage.getTotalPrice();
         Assertions.assertEquals(expectedPrice, totalPrice);
     }
 }
