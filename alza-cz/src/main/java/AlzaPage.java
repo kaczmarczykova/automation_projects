@@ -16,7 +16,7 @@ public class AlzaPage {
     }
 
     void setWaitTime(int seconds) {
-        browser.manage().timeouts().implicitlyWait(Duration.ofMillis(seconds * 1000));
+        browser.manage().timeouts().implicitlyWait(Duration.ofSeconds(seconds));
     }
 
     void waitFor(int seconds) {
@@ -73,7 +73,6 @@ public class AlzaPage {
             var close = "Confirm";
             browser.findElement(By.linkText(close)).click();
             }
-
     }
 
     String getLanguageVersion() {

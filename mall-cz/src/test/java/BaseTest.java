@@ -11,7 +11,7 @@ public class BaseTest {
 
     @BeforeEach
     void commonBeforeTest() {
-        mallPage.setWaitTime();
+        mallPage.setWaitTime(5);
         mallPage.goToHomePage();
         browser.manage().window().maximize();
         //accept cookies

@@ -1,7 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 import java.util.List;
 
 public class CartPage extends AlzaPage {
@@ -41,9 +40,12 @@ public class CartPage extends AlzaPage {
                     WebElement removeProductButton = item.findElement(By.cssSelector(".js-item-options-del"));
                     removeProductButton.click();
                 } catch (Exception e) {
+                    System.out.println("Error during deleting item: " + e.getMessage());
                 }
             }
+            System.out.println("All items have been removed from the cart.");
         } catch (Exception e) {
+            System.out.println("Error during deleting cart: " + e.getMessage());
         }
     }
 }

@@ -1,7 +1,6 @@
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 
 public class MallPage {
@@ -28,17 +27,17 @@ public class MallPage {
         Actions actions = new Actions(browser);
         // Přesunout kurzor na prvek
         actions.moveToElement(targetElement).perform();
-
         browser.findElement(By.xpath("//input[@id='username']")).sendKeys(email);
         browser.findElement(By.xpath("//input[@id='password']")).sendKeys((password));
         browser.findElement(By.xpath("//button[@data-testid='rounded-button']")).click();
     }
+
     void goToHomePage() {
         browser.get("https://mall.cz");
     }
 
-    void setWaitTime() {
-        browser.manage().timeouts().implicitlyWait(Duration.ofMillis(5000));
+    void setWaitTime(int seconds) {
+        browser.manage().timeouts().implicitlyWait(Duration.ofSeconds(seconds));
     }
 
     void acceptCookies() {

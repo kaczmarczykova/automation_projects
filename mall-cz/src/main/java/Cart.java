@@ -1,7 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 import java.util.List;
 
 public class Cart extends MallPage {
@@ -58,15 +57,17 @@ public class Cart extends MallPage {
         try {
             // Identify all products on the page
             List<WebElement> itemsInCart = browser.findElements(By.cssSelector(".cart-overview-item"));
-
             for (WebElement item : itemsInCart) {
                 try {
                     WebElement removeButton = item.findElement(By.cssSelector(".cart-overview-item-row__delete"));
                     removeButton.click();
                 } catch (Exception e) {
+                    System.out.println("Error during deleting item: " + e.getMessage());
                 }
             }
-        } catch (Exception e) {
+                System.out.println("All items have been removed from the cart.");
+        } catch(Exception e){
+            System.out.println("Error during deleting cart: " + e.getMessage());
         }
     }
 }
