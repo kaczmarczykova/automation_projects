@@ -79,4 +79,14 @@ public class MallPage {
         js.executeScript("window.scrollTo(0, 0);");
     }
 
+    void closeSmartOffer() {
+        try {
+            var closeButton = browser.findElement(By.id("exponea-close"));
+            closeButton.click();
+        } catch (NoSuchElementException e) {
+            System.out.println("Advertisement close button not found.");
+        } catch (Exception e) {
+            System.out.println("An unexpected error occurred while closing the advertisement: " + e.getMessage());
+        }
+    }
 }
