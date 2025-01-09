@@ -295,9 +295,17 @@ def tah_pocitace(pole):
 def tah_pocitace_strateg(pole):
     while True:
         pomocna_promenna = 0
+
+        vyskyt = pole.find('x-x')
+        if vyskyt > -1:
+            #Neco
+            print("Vyskyt")
+            muj_tah = vyskyt + 1
+
+
         if ('x-x' in pole) or ('xx' in pole) or ('o-o' in pole) or ('oo' in pole):
             for i in range (len(pole)):
-                
+                print(i)
                 # ('x-x' in pole)
                 if pole[i] == 'x' and pole[i + 2] =='x' and (i + 2) < len(pole):
                     cislo_policka = i + 1
