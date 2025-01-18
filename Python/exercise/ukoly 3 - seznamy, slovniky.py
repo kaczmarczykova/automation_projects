@@ -80,6 +80,7 @@ def prvni_pismeno(seznam, pismeno):
 def serad_seznam(seznam):
     seznam.sort()
     print(seznam)
+    return seznam
 
 #serad_seznam(["pes", "kočka", "králík", "had"])
 
@@ -105,6 +106,7 @@ def priletela_andulka(seznam):
     klic.sort()
     for dvojice in klic:
         print(dvojice[1], end= ', ')
+    return klic
 
 #priletela_andulka(["pes", "kočka", "králík", "had", "andulka"])
 
@@ -175,14 +177,14 @@ def rimske_cislice(cislo):
     print(rimske + " " + str(arabsky))
     return arabsky
 
-
-success = True
+"""success = True
 if (rimske_cislice('MCMXCIX') != 1999): success = False
 if (rimske_cislice('MCMXIX') != 1919): success = False
 if (rimske_cislice('MCMXCIV') != 1994): success = False
 if (rimske_cislice('MCDLXXVI') != 1476): success = False
 if (rimske_cislice('DCCCIV') != 804): success = False
-print(success)
+print(success)"""
+
 ##############################################################################
 
 # Napište program, který vyřeší následující úlohu: Na dlouhé chodbě je 100 dveří, všechny jsou na začátku zavřené. 
@@ -190,3 +192,83 @@ print(success)
 # při druhém průchodu otočíme pouze každé druhé dveře, při třetím průchodu každé třetí atd. až do 100 průchodů, 
 # kdy otočíme pouze poslední dveře. Které dveře zůstanou na konci otevřené? Vypište jejich pořadová čísla.
 
+def dvere(pocet_dveri):
+    chodba = []
+    for i in range (pocet_dveri):
+        chodba.append(False)
+    for i in range(pocet_dveri):
+        for j in range(0, pocet_dveri, i):
+            chodba[j] = not(chodba[j])
+    return chodba
+
+#dvere(100)
+
+##############################################################################
+
+# Napiš funkci, která dostane seznam souřadnic (párů čísel menších než 10, která určují sloupec a řádek) 
+# a vypíše je jako mapu: mřížku 10×10, kde na políčka která jsou v seznamu napíše X, jinde tečku.
+
+def vytvor_mrizku(vyska, sirka, body):
+    mrizka = []
+    for i in range (vyska):
+        radek = []
+        for j in range (sirka):
+            radek.append('.')
+        mrizka.append(radek)
+    
+    for bod in body:
+        mrizka[bod[0]][bod[1]] = 'X'
+
+    for radek in mrizka:
+        for prvek in radek:
+            print(prvek, end= '')
+        print()
+    return mrizka
+
+#vytvor_mrizku(10, 10, [(0, 0), (0, 1), (2, 3), (3, 5), (9, 8)])
+
+##############################################################################
+
+# Napiš funkci pohyb, která dostane seznam souřadnic a světovou stranu ("s", "j", "v" nebo "z") a přidá k seznamu poslední 
+# bod „posunutý“ v daném směru.
+
+def pohyb(souradnice, strana):
+    seznam_souradnic = [(0, 0)]
+
+    if strana.lower() == 's':
+        if (souradnice[0] - 1) >= 0:
+            nova_souradnice = (souradnice[0] - 1, souradnice[1])
+    elif strana.lower() == 'j':
+        if (souradnice[0] + 1) <= sirka:
+            nova_souradnice = (souradnice[0] + 1, souradnice[1])
+    elif strana.lower() == 'v':
+        if (souradnice[1] + 1) <= sirka:
+            nova_souradnice = (souradnice[0], souradnice[1] + 1)
+    elif strana.lower() == 'z':
+        if (souradnice[1] - 1) >= 0:
+            nova_souradnice = (souradnice[0], souradnice[1] - 1)
+
+    seznam_souradnic.append(nova_souradnice)
+    print(seznam_souradnic)
+
+pohyb((2, 2), 's')
+    
+##############################################################################
+
+
+# Napiš cyklus, který se bude ptát uživatele na světovou stranu, podle ní zavolá pohyb, a následně vykreslí seznam jako mapu. 
+# Pak se opět se zeptá na stranu atd. Začínej se seznamem [(0, 0), (1, 0), (2, 0)]. 
+# Doplň funkci pohyb tak, aby při pohybu umazala první bod ze seznamu souřadnic. Výsledný seznam tak bude mít stejnou délku, 
+# jako před voláním.
+
+def kam(souradnice, mrizka):
+    while True:
+        strana = input('Kterym smerem? ')
+        moznosti = ['s', 'j', 'v', 'z']
+        if strana.lower() in moznosti:
+            pohyb(souradnice, strana)
+            for radek in mrizka:
+                for prvek in radek:
+                    print(prvek, end= '')
+                print()
+            
