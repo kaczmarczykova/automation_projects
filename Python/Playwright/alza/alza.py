@@ -31,11 +31,11 @@ def select_TV_in_stock(page):
             i += 1
     return simple_price
 
-def get_expected_price(page, string):
+def get_expected_price(page, text):
     price = ''
-    for i in range (len(string)):
-        if string[i].isdigit():
-            price += string[i]
+    for i in range (len(text)):
+        if text[i].isdigit():
+            price += text[i]
     return int(price)
 
 def go_to_cart(page):

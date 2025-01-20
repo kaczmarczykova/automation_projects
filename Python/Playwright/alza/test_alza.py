@@ -14,8 +14,8 @@ def test_cheapest_TVs(page):
 def test_cheapest_shortly(page):
     page.goto(definitions.CHEAPEST_TV_URL)
     alza.accept_cookies(page)
-    string = alza.select_TV_in_stock(page)
-    price = alza.get_expected_price(page, string)
+    price_string = alza.select_TV_in_stock(page)
+    price = alza.get_expected_price(page, price_string)
     alza.go_to_cart(page)
     alza.increase_count(page, 2)
     actual_prize = alza.get_actual_price(page)
